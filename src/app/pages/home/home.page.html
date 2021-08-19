@@ -1,12 +1,19 @@
 <ion-content>
-  home
-
+  <div class="content-container">
+  <ion-card>
+    <ion-card-content>
+      <h1>Welcome</h1>
+      <p><strong>Christmas in Action Indy… <em>building hope in your community.</em></strong></p>
+      <p>We appreciate your interest in Christmas in Action Indy. If you have ever watched “Extreme Makeover, Home Edition” and have been moved by seeing people who were struggling being helped by generous volunteers, then you’ll be excited about Christmas in Action Indy.</p>
+      <p>Christmas in Action Indy is similar, except that instead of tearing down and building a new home, we complete a one day home repair blitz targeting low-income, elderly, and/or disabled homeowners in the Indianapolis area.</p>
+      <p><strong>Each year our one day Home Repair Blitz is scheduled for the third Saturday in May at 8AM.</strong></p>
+    </ion-card-content>
+  </ion-card>
   <ion-card *ngFor="let application of applications; index as i; first as isFirst">
     <ion-card-content>
       <h1>{{application.title}}</h1>
       {{application.description}}
     </ion-card-content>
   </ion-card>
-
-
+</div>
 </ion-content>

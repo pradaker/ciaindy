@@ -1,17 +1,17 @@
-@media(min-width: 768px) {
+@media (min-width: 768px) {
     .mobile-header {
         display: none;
     }
 
     .header {
-        display: flex;
-        background: #fff;
-        padding-left: 40px;
-        padding-right: 40px;
+        display:flex;
+        background:#fff;
+        padding-left:12%;
+        padding-right:12%;
     }
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
     .mobile-header {
         display: block;
     }
@@ -19,4 +19,8 @@
     .header {
         display: none;
     }
+}
+
+.active-item {
+    border-bottom: 2px solid var(--ion-color-primary);
 }
