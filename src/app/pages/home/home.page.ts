@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Application, HomeownerApplicationService } from 'src/app/services/homeowner-application.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  applications: Application[] = [];
 
-  constructor() { }
+  constructor(
+    private homeownerApplicationService: HomeownerApplicationService
+  ) { }
 
   ngOnInit() {
+    this.getHomeownerApplications()
+  }
+
+  getHomeownerApplications() {
+    this.homeownerApplicationService.getApplications().subscribe(res => {
+      console.log(res)
+      this.applications = res
+    })
   }
 
 }
