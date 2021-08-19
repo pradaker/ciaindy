@@ -5,7 +5,8 @@ import * as firebase from "firebase"
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 export interface Application {
-  name: string;
+  title: string;
+  description: string;
 }
 
 @Injectable({
