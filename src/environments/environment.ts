@@ -12,7 +12,7 @@ export const environment = {
     storageBucket: "ciaindy-9562d.appspot.com",
     messagingSenderId: "253868294371",
     appId: "1:253868294371:web:d001ef47cbf8c1813dc5d6"
-  };
+  },
 };
 
 /*
