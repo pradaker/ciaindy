@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Application, HomeownerApplicationService } from 'src/app/services/homeowner-application.service';
+import { Application, PageContentService } from 'src/app/services/page-content.service';
 
 @Component({
   selector: 'app-home',
@@ -10,15 +10,15 @@ export class HomePage implements OnInit {
   applications: Application[] = [];
 
   constructor(
-    private homeownerApplicationService: HomeownerApplicationService
+    private PageContentService: PageContentService
   ) { }
 
   ngOnInit() {
-    this.getHomeownerApplications()
+    this.getPageContent()
   }
 
-  getHomeownerApplications() {
-    this.homeownerApplicationService.getApplications().subscribe(res => {
+  getPageContent() {
+    this.PageContentService.getApplications().subscribe(res => {
       console.log(res)
       this.applications = res
     })

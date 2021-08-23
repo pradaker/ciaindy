@@ -20,9 +20,9 @@ export class MenuPage implements OnInit {
       path: '/products'
     },
     {
-      title: 'About',
+      title: 'Homeowner Application',
       icon: 'information',
-      path: '/about'
+      path: '/homeowner-app'
     }
   ]
 

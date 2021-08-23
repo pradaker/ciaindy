@@ -12,7 +12,7 @@ export interface Application {
 @Injectable({
   providedIn: 'root'
 })
-export class HomeownerApplicationService {
+export class PageContentService {
   private homeownerApplication: AngularFirestoreCollection<Application>;
   private applications: Observable<Application[]>;
 
