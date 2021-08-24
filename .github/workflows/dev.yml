@@ -1,0 +1,46 @@
+name: Development Build
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 2.7
+          architecture: x64
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Write Version
+        uses: schdck/create-env-json@v1
+        id: create-env
+        with:
+          file-name: 'env.json'
+          version: ${{ github.run_number }}
+      - name: Install Project Dependencies
+        run: npm install
+      - name: Set deployment target (dev)
+        uses: w9jds/firebase-action@v1.5.0
+        with:
+          args: use dev
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Build Project
+        run: npm run-script build --prod
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@v1.5.0
+        with:
+          args: deploy --only hosting -m ${{ github.run_number }}
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
