@@ -1,3 +1,34 @@
 <ion-content>
-about
+    <div class="content-container">
+    <ion-card>
+      <ion-card-content>
+        <h1>Homeowner Application</h1>
+        <form [formGroup]="gymDetailsForm" novalidate id="gymDetailsForm">
+          <ion-item color="none" lines="none" class="white" no-padding>
+          <ion-label position="stacked">Gym Name <ion-text color="danger"></ion-text></ion-label>
+          <ion-input type="text" formControlName="name" class="ionInput"></ion-input>
+          </ion-item>
+          <ion-item color="none" lines="none" class="white" no-padding>
+            <ion-label position="stacked">Address <ion-text color="danger"></ion-text></ion-label>
+            <ion-input type="text" formControlName="address" class="ionInput"></ion-input>
+            </ion-item>
+          <ion-item color="none" lines="none" class="white" no-padding>
+            <ion-label position="stacked">Email <ion-text color="danger"></ion-text></ion-label>
+            <ion-input type="text" formControlName="email" class="ionInput"></ion-input>
+          </ion-item>
+        </form>
+        <ion-col>
+          <ion-text color="danger">
+            <ul class="ion-padding-start">
+              <li *ngFor="let error of getGymDetailsFormErrors()">{{error}}</li>
+            </ul>
+          </ion-text>
+        </ion-col>
+        <ion-button color="primary" [disabled]="gymDetailsForm.invalid" (click)="saveDetail()">Submit</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-toolbar class="footer">
+    &copy; 2021 Christmas in Action Indy. All Rights Reserved.
+  </ion-toolbar>
 </ion-content>
