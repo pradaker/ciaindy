@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import * as firebase from "firebase"
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-export interface Application {
+export interface PageContent {
   title: string;
   description: string;
 }
@@ -13,14 +13,14 @@ export interface Application {
   providedIn: 'root'
 })
 export class PageContentService {
-  private homeownerApplication: AngularFirestoreCollection<Application>;
-  private applications: Observable<Application[]>;
+  private pageContent: AngularFirestoreCollection<PageContent>;
+  private pageContents: Observable<PageContent[]>;
 
   constructor(
     private db: AngularFirestore,
     ) {
-      this.homeownerApplication = db.collection<Application>('homeownerApplications');
-      this.applications = this.homeownerApplication.snapshotChanges().pipe(
+      this.pageContent = db.collection<PageContent>('pageContent');
+      this.pageContents = this.pageContent.snapshotChanges().pipe(
         map(actions => {
           return actions.map(a => {
             const data = a.payload.doc.data();
@@ -31,8 +31,8 @@ export class PageContentService {
       );
     }
 
-    getApplications() {
-      return this.applications;
+    getPageContent() {
+      return this.pageContents;
     }
 
 
