@@ -9,11 +9,15 @@
       <p><strong>Each year our one day Home Repair Blitz is scheduled for the third Saturday in May at 8AM.</strong></p>
     </ion-card-content>
   </ion-card>
-  <ion-card *ngFor="let application of applications; index as i; first as isFirst">
+  <div class="ion-text-center" style="margin:12px;"><iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/nmN_sUV0xE0?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></div>
+  <ion-card *ngFor="let pageContent of pageContents; index as i; first as isFirst">
     <ion-card-content>
-      <h1>{{application.title}}</h1>
-      <p>{{application.description}}</p>
+      <h1>{{pageContent.title}}</h1>
+      <p [innerHTML]="pageContent.description"></p>
     </ion-card-content>
   </ion-card>
 </div>
+<ion-toolbar class="footer">
+  &copy; 2021 Christmas in Action Indy. All Rights Reserved.
+</ion-toolbar>
 </ion-content>

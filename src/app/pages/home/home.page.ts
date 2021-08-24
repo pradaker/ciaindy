@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Application, PageContentService } from 'src/app/services/page-content.service';
+import { PageContent, PageContentService } from 'src/app/services/page-content.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +7,7 @@ import { Application, PageContentService } from 'src/app/services/page-content.s
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  applications: Application[] = [];
+  pageContents: PageContent[] = [];
 
   constructor(
     private PageContentService: PageContentService
@@ -18,9 +18,9 @@ export class HomePage implements OnInit {
   }
 
   getPageContent() {
-    this.PageContentService.getApplications().subscribe(res => {
+    this.PageContentService.getPageContent().subscribe(res => {
       console.log(res)
-      this.applications = res
+      this.pageContents = res
     })
   }
 
