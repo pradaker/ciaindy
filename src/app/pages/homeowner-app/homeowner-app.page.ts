@@ -1,6 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { AlertController } from '@ionic/angular';
+import { HomeownerApplication, HomeownerApplicationService } from 'src/app/services/homeowner-application.service';
 @Component({
   selector: 'app-homeowner-app',
   templateUrl: './homeowner-app.page.html',
@@ -11,7 +12,10 @@ export class HomeownerAppPage implements OnInit {
 
   public gymDetailsForm: FormGroup;
 
-  constructor() {}
+  constructor(
+    private homeownerApplicationService: HomeownerApplicationService,
+    private alertController: AlertController
+  ) {}
 
   ngOnInit() {
     this.createForm()
@@ -25,8 +29,30 @@ export class HomeownerAppPage implements OnInit {
     });
   }
 
-  saveDetail() {
-    console.log(this.gymDetailsForm.controls.name.value)
+  async saveDetail() {
+    // Construct and save application details
+    const homeownerApplication: HomeownerApplication = {
+      name: this.gymDetailsForm.controls.name.value,
+      address: this.gymDetailsForm.controls.address.value,
+      email: this.gymDetailsForm.controls.email.value
+    }
+    this.homeownerApplicationService.addHomeownerApplication(homeownerApplication)
+    // Display alert
+    const alert = await this.alertController.create({
+      cssClass: 'customAlert',
+      header: 'Application Submitted',
+      message: 'We have successfully receieved your application!',
+      buttons: [
+        {
+          text: 'Got it!',
+          handler: () => {
+            location.reload(); 
+          }
+        }
+      ],
+      backdropDismiss: false
+    });
+    await alert.present();
   }
 
   public getGymDetailsFormErrors(): string[] {
