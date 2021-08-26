@@ -25,6 +25,11 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+ion-card {
+    max-width: 1400px;
+    margin:10px auto;
+}
+
 ion-card-content {
     padding: 38px !important;
     background:#fff;
@@ -48,9 +53,12 @@ ion-content {
 }
 
 .content-container {
-    padding-left:12%;
-    padding-right:12%;
+    padding-left:20px;
+    padding-right:20px;
     padding-top:20px;
+    // display: block;
+    // align-items: center;
+    // justify-content: center;
 }
 
 .footer {
