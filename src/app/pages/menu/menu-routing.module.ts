@@ -13,12 +13,12 @@ const routes: Routes = [
         loadChildren: () => import('../home/home.module').then( m => m.HomePageModule)
       },
       {
-        path: 'products',
-        loadChildren: () => import('../products/products.module').then( m => m.ProductsPageModule)
-      },
-      {
         path: 'homeowner-app',
         loadChildren: () => import('../homeowner-app/homeowner-app.module').then( m => m.HomeownerAppPageModule)
+      },
+      {
+        path: 'get-involved',
+        loadChildren: () => import('../get-involved/get-involved.module').then( m => m.GetInvolvedPageModule)
       },
     ]
   }
