@@ -30,7 +30,7 @@ export class GetInvolvedContentService {
       );
     }
 
-    getHomePageContent() {
+    getGetInvolvedContent() {
       return this.GetInvolvedContents;
     }
 

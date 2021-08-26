@@ -18,7 +18,7 @@ export class GetInvolvedPage implements OnInit {
   }
 
   getGetInvolvedContent() {
-    this.GetInvolvedContentService.getHomePageContent().subscribe(res => {
+    this.GetInvolvedContentService.getGetInvolvedContent().subscribe(res => {
       console.log(res)
       this.GetInvolvedContents = res
     })
