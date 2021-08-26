@@ -6,8 +6,29 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 
 export interface HomeownerApplication {
   name: string;
-  email: string;
   address: string;
+  homePhone: string;
+  cellPhone: string;
+  email: string;
+  homeownerConditon: string;
+  homeownerAge: string;
+  homeownerMonthlyIncome: string;
+  onlyPropertyOwned: string;
+  isWorking: string;
+  employmentLocation: string;
+  isChurchMember: string;
+  churchName: string;
+  isCommunityOrgMember: string;
+  communityOrgName: string;
+  assistExplanation: string;
+  workNeeded: string;
+  familyAndFriends: string;
+  homeownerAwareness: string;
+  howLearnedAboutCIA: string;
+  nameOfPersonSubmitting: string;
+  agencyName: string;
+  phoneNumberOfSubmitter: string;
+  applicationSubmissionDate: string;
 }
 @Injectable({
   providedIn: 'root'
