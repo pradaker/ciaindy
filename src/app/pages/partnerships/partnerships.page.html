@@ -1,9 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>partnerships</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <div class="content-container">
+  <ion-card *ngFor="let PartnershipsContent of PartnershipsContents; index as i; first as isFirst">
+    <ion-card-content>
+      <h1>{{PartnershipsContent.title}}</h1>
+      <p [innerHTML]="PartnershipsContent.description"></p>
+    </ion-card-content>
+  </ion-card>
+</div>
+<ion-toolbar class="footer">
+  &copy; 2021 Christmas in Action Indy. All Rights Reserved.
+  <!-- {{FooterContent.text}} -->
+</ion-toolbar>
 </ion-content>

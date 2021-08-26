@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PartnershipsContent, PartnershipsContentService } from 'src/app/services/partnerships-content.service';
 
 @Component({
   selector: 'app-partnerships',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./partnerships.page.scss'],
 })
 export class PartnershipsPage implements OnInit {
+  PartnershipsContents: PartnershipsContent[] = [];
 
-  constructor() { }
+  constructor(
+    private PartnershipsContentService: PartnershipsContentService
+  ) { }
 
   ngOnInit() {
+    this.getPartnershipsContent()
+  }
+
+  getPartnershipsContent() {
+    this.PartnershipsContentService.getPartnershipsContent().subscribe(res => {
+      console.log(res)
+      this.PartnershipsContents = res
+    })
   }
 
 }
