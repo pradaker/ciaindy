@@ -17,6 +17,14 @@ const routes: Routes = [
         loadChildren: () => import('../homeowner-app/homeowner-app.module').then( m => m.HomeownerAppPageModule)
       },
       {
+        path: 'partnerships',
+        loadChildren: () => import('../partnerships/partnerships.module').then( m => m.PartnershipsPageModule)
+      },
+      {
+        path: 'contact',
+        loadChildren: () => import('../contact/contact.module').then( m => m.ContactPageModule)
+      },
+      {
         path: 'get-involved',
         loadChildren: () => import('../get-involved/get-involved.module').then( m => m.GetInvolvedPageModule)
       },
