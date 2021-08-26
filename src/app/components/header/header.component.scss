@@ -1,6 +1,6 @@
 @media (min-width: 768px) {
     .mobile-header {
-        display: none;
+        display:none;
     }
 
     .header {
@@ -9,19 +9,27 @@
         padding-left:12%;
         padding-right:12%;
     }
+
+    .header-container {
+        min-height:63px;
+    }
 }
 
 @media (max-width: 768px) {
     .mobile-header {
-        display: block;
+        display:block;
         background:#fff;
     }
 
     .header {
-        display: none;
+        display:none;
+    }
+
+    .header-container {
+        display:none;
     }
 }
 
 .active-item {
-    border-bottom: 2px solid var(--ion-color-primary);
+    border-bottom:2px solid var(--ion-color-primary);
 }
