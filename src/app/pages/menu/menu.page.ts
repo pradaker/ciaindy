@@ -15,14 +15,14 @@ export class MenuPage implements OnInit {
       path: '/'
     },
     {
-      title: 'Products',
-      icon: 'list',
-      path: '/products'
-    },
-    {
       title: 'Homeowner Application',
       icon: 'information',
       path: '/homeowner-app'
+    },
+    {
+      title: 'Get Involved',
+      icon: 'information',
+      path: '/get-involved'
     }
   ]
 
