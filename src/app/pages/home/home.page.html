@@ -1,9 +1,10 @@
 <ion-content>
   <div class="content-container">
-  <ion-card *ngFor="let pageContent of pageContents; index as i; first as isFirst">
+  <ion-card *ngFor="let HomePageContent of HomePageContents; index as i; first as isFirst">
     <ion-card-content>
-      <h1>{{pageContent.title}}</h1>
-      <p [innerHTML]="pageContent.description"></p>
+      <h1>{{HomePageContent.title}}</h1>
+      <p [innerHTML]="HomePageContent.description"></p>
+      <p>&nbsp;</p>
       <div class="auto-resizable-iframe">
         <div>
           <iframe width="560" height="315" src="https://www.youtube.com/embed/nmN_sUV0xE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -14,5 +15,6 @@
 </div>
 <ion-toolbar class="footer">
   &copy; 2021 Christmas in Action Indy. All Rights Reserved.
+  <!-- {{FooterContent.text}} -->
 </ion-toolbar>
 </ion-content>

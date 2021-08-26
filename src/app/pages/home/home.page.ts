@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PageContent, PageContentService } from 'src/app/services/page-content.service';
+import { HomePageContent, HomePageContentService } from 'src/app/services/home-page-content.service';
+import { FooterContent, FooterContentService } from 'src/app/services/footer-content.service';
 
 @Component({
   selector: 'app-home',
@@ -7,21 +8,28 @@ import { PageContent, PageContentService } from 'src/app/services/page-content.s
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  pageContents: PageContent[] = [];
+  HomePageContents: HomePageContent[] = [];
+  FooterContent: FooterContent;
 
   constructor(
-    private PageContentService: PageContentService
+    private HomePageContentService: HomePageContentService,
+    private FooterContentService: FooterContentService
   ) { }
 
   ngOnInit() {
-    this.getPageContent()
+    this.getHomePageContent()
+    this.getFooterContent()
   }
 
-  getPageContent() {
-    this.PageContentService.getPageContent().subscribe(res => {
-      console.log(res)
-      this.pageContents = res
+  getHomePageContent() {
+    this.HomePageContentService.getHomePageContent().subscribe(res => {
+      //console.log(res)
+      this.HomePageContents = res
     })
+  }
+
+  getFooterContent() {
+    this.FooterContentService.getFooterContent()
   }
 
 }
