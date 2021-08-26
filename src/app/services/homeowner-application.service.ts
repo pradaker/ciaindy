@@ -60,7 +60,4 @@ export class HomeownerApplicationService {
       return this.homeownerApplication.add(homeownerApplication)
     }
 
-
-
-  
 }

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PageContentService } from './home-page-content.service';
+import { HomePageContentService } from './home-page-content.service';
 
-describe('PageContentService', () => {
-  let service: PageContentService;
+describe('HomePageContentService', () => {
+  let service: HomePageContentService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PageContentService);
+    service = TestBed.inject(HomePageContentService);
   });
 
   it('should be created', () => {
