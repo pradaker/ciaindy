@@ -4,7 +4,7 @@
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="mobileNavigation">
+  <ion-content>
 
     <ion-menu-toggle *ngFor="let item of menuItems">
       <ion-item button (click)="setTitle(item.title)" [routerLink]="item.path" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}">
