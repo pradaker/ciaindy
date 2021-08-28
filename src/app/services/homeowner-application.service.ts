@@ -28,7 +28,7 @@ export interface HomeownerApplication {
   nameOfPersonSubmitting: string;
   agencyName: string;
   phoneNumberOfSubmitter: string;
-  applicationSubmissionDate: string;
+  applicationSubmissionDate: number;
 }
 @Injectable({
   providedIn: 'root'
