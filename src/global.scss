@@ -90,3 +90,16 @@ ion-item > ion-label {
     width: 100%;
     height: 100%;
 }
+
+ion-menu {
+
+  ion-content {
+    --background: purple;
+    --ion-background-color: yellow;
+  }
+
+
+  ion-list {/* optional, but it needs when you use gradient as a background color.*/
+    background: transparent;
+  }
+}
