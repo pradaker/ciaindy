@@ -45,7 +45,7 @@ export class HomeownerAppPage implements OnInit {
       howLearnedAboutCIA: new FormControl(''),
       nameOfPersonSubmitting: new FormControl('', Validators.required),
       agencyName: new FormControl(''),
-      phoneNumberOfSubmitter: new FormControl('', Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")),
+      phoneNumberOfSubmitter: new FormControl(''),
       applicationSubmissionDate: new FormControl('', Validators.required),
     });
   }
@@ -76,7 +76,7 @@ export class HomeownerAppPage implements OnInit {
       nameOfPersonSubmitting: this.homeownersApplicationForm.controls.nameOfPersonSubmitting.value,
       agencyName: this.homeownersApplicationForm.controls.agencyName.value,
       phoneNumberOfSubmitter: this.homeownersApplicationForm.controls.phoneNumberOfSubmitter.value,
-      applicationSubmissionDate: this.homeownersApplicationForm.controls.applicationSubmissionDate.value,
+      applicationSubmissionDate: new Date().getTime(),
     }
     this.homeownerApplicationService.addHomeownerApplication(homeownerApplication)
     // Display alert
@@ -88,7 +88,7 @@ export class HomeownerAppPage implements OnInit {
         {
           text: 'OK',
           handler: () => {
-            location.reload(); 
+            location.reload();
           }
         }
       ],
@@ -188,13 +188,6 @@ export class HomeownerAppPage implements OnInit {
     if (nameOfPersonSubmittingControl.dirty && nameOfPersonSubmittingControl.errors) {
       if (nameOfPersonSubmittingControl.hasError('required')) {
         errors.push('The name of the person submitting this referral is required.');
-      }
-    }
-
-    const applicationSubmissionDateControl = this.homeownersApplicationForm.controls.applicationSubmissionDate;
-    if (applicationSubmissionDateControl.dirty && applicationSubmissionDateControl.errors) {
-      if (applicationSubmissionDateControl.hasError('required')) {
-        errors.push('Date which the application is being submitted is required.');
       }
     }
 
