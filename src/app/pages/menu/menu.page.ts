@@ -20,6 +20,16 @@ export class MenuPage implements OnInit {
       path: '/homeowner-app'
     },
     {
+      title: 'Partnerships',
+      icon: 'information',
+      path: '/partnerships'
+    },
+    {
+      title: 'Contact Us',
+      icon: 'information',
+      path: '/contact'
+    },
+    {
       title: 'Get Involved',
       icon: 'information',
       path: '/get-involved'
