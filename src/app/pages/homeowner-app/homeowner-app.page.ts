@@ -17,9 +17,17 @@ export class HomeownerAppPage implements OnInit {
     private alertController: AlertController
   ) {}
 
+  homeownerConditions: Array<String> = ['Elderly', 'Disabled', 'Low Income'];
+
   ngOnInit() {
     this.createForm()
   }
+
+  // addHomeownerConditionControls() {
+  //   const arr = this.homeownerConditions.map(element => {
+  //     return this.
+  //   }
+  // }
 
   createForm() {
     this.homeownersApplicationForm = new FormGroup({

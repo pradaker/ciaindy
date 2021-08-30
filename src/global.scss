@@ -94,12 +94,12 @@ ion-item > ion-label {
 ion-menu {
 
   ion-content {
-    --background: purple;
-    --ion-background-color: yellow;
+    --background:#fff;
+    --ion-background-color:#fff;
   }
 
 
-  ion-list {/* optional, but it needs when you use gradient as a background color.*/
-    background: transparent;
-  }
+//   ion-list {/* optional, but needed when background is a gradient.*/
+//     background: transparent;
+//   }
 }
