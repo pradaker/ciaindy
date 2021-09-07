@@ -34,9 +34,6 @@ export class HomeownerAppPage implements OnInit {
     this.createForm()
   }
 
-  isFormSubmitted = false;
-
-
 
   createForm() {
     this.homeownersApplicationForm = new FormGroup({
@@ -143,7 +140,16 @@ export class HomeownerAppPage implements OnInit {
       }
     }
 
+    let selectedConditions = []
+    this.homeownerConditions.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedConditions.push(option.value)
+      }
+    })
 
+    if (selectedConditions == []) {
+      errors.push('Condition(s) of homeowner is required')
+    }
 
     const homeownerMonthlyIncomeControl = this.homeownersApplicationForm.controls.homeownerMonthlyIncome;
     if (homeownerMonthlyIncomeControl.dirty && homeownerMonthlyIncomeControl.errors) {
