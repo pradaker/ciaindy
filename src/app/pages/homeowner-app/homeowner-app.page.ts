@@ -61,6 +61,7 @@ export class HomeownerAppPage implements OnInit {
     const checkboxArrayList: FormArray = this.homeownersApplicationForm.get('checkboxArrayList') as FormArray;
     this.homeownerConditions[i].checked = e.target.checked;
     this.updateCheckControl(checkboxArrayList, e.target);
+
   }
 
   createForm() {
@@ -70,7 +71,6 @@ export class HomeownerAppPage implements OnInit {
       homePhone: new FormControl(''),
       cellPhone: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
-      homeownerCondition: new FormControl('', Validators.required),
       homeownerAge: new FormControl(''),
       homeownerMonthlyIncome: new FormControl('', Validators.required),
       onlyPropertyOwned: new FormControl('', Validators.required),
@@ -100,7 +100,7 @@ export class HomeownerAppPage implements OnInit {
       homePhone: this.homeownersApplicationForm.controls.homePhone.value,
       cellPhone: this.homeownersApplicationForm.controls.cellPhone.value,
       email: this.homeownersApplicationForm.controls.email.value,
-      homeownerConditon: this.homeownersApplicationForm.controls.homeownerConditon.value,
+      homeownerCondition: this.homeownerConditions.value,
       homeownerAge: this.homeownersApplicationForm.controls.homeownerAge.value,
       homeownerMonthlyIncome: this.homeownersApplicationForm.controls.homeownerMonthlyIncome.value,
       onlyPropertyOwned: this.homeownersApplicationForm.controls.onlyPropertyOwned.value,

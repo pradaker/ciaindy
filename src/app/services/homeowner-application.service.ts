@@ -10,7 +10,7 @@ export interface HomeownerApplication {
   homePhone: string;
   cellPhone: string;
   email: string;
-  homeownerConditon: string;
+  homeownerCondition: string;
   homeownerAge: string;
   homeownerMonthlyIncome: string;
   onlyPropertyOwned: string;
