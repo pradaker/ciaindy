@@ -22,7 +22,6 @@ export class HomeownerAppPage implements OnInit {
       checkboxArrayList: this.formBuilder.array([], [Validators.required])
     });
 
-    this.onLoadCheckboxStatus();
   }
 
   homeownerConditions = [
@@ -37,32 +36,7 @@ export class HomeownerAppPage implements OnInit {
 
   isFormSubmitted = false;
 
-  updateCheckControl(cal, o) {
-    if (o.checked) {
-      cal.push(new FormControl(o.value));
-    } else {
-      cal.controls.forEach((item: FormControl, index) => {
-        if (item.value == o.value) {
-          cal.removeAt(index);
-          return;
-        }
-      });
-    }
-  }
 
-  onLoadCheckboxStatus() {
-    const checkboxArrayList: FormArray = this.homeownersApplicationForm.get('checkboxArrayList') as FormArray;
-    this.homeownerConditions.forEach(o => {
-      this.updateCheckControl(checkboxArrayList, o);
-    })
-  }
-
-  onSelectionChange(e, i) {
-    const checkboxArrayList: FormArray = this.homeownersApplicationForm.get('checkboxArrayList') as FormArray;
-    this.homeownerConditions[i].checked = e.target.checked;
-    this.updateCheckControl(checkboxArrayList, e.target);
-
-  }
 
   createForm() {
     this.homeownersApplicationForm = new FormGroup({
@@ -93,6 +67,12 @@ export class HomeownerAppPage implements OnInit {
   }
 
   async saveDetail() {
+    let selectedConditions = []
+    this.homeownerConditions.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedConditions.push(option.value)
+      }
+    })
     // Construct and save application details
     const homeownerApplication: HomeownerApplication = {
       name: this.homeownersApplicationForm.controls.name.value,
@@ -100,8 +80,7 @@ export class HomeownerAppPage implements OnInit {
       homePhone: this.homeownersApplicationForm.controls.homePhone.value,
       cellPhone: this.homeownersApplicationForm.controls.cellPhone.value,
       email: this.homeownersApplicationForm.controls.email.value,
-      homeownerCondition: this.homeownersApplicationForm.controls.homeownerConditon.value,
-      // homeownerCondition: this.homeownerConditions.value,
+      homeownerCondition: selectedConditions,
       homeownerAge: this.homeownersApplicationForm.controls.homeownerAge.value,
       homeownerMonthlyIncome: this.homeownersApplicationForm.controls.homeownerMonthlyIncome.value,
       onlyPropertyOwned: this.homeownersApplicationForm.controls.onlyPropertyOwned.value,
@@ -164,12 +143,7 @@ export class HomeownerAppPage implements OnInit {
       }
     }
 
-    const homeownerConditionControl = this.homeownersApplicationForm.controls.homeownerCondition;
-    if (homeownerConditionControl.dirty && homeownerConditionControl.errors) {
-      if (homeownerConditionControl.hasError('required')) {
-        errors.push('It is required that you specify whether the homeowner is elderly, disabled, or low income.');
-      }
-    }
+
 
     const homeownerMonthlyIncomeControl = this.homeownersApplicationForm.controls.homeownerMonthlyIncome;
     if (homeownerMonthlyIncomeControl.dirty && homeownerMonthlyIncomeControl.errors) {
