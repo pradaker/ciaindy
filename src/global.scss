@@ -91,13 +91,17 @@ ion-item > ion-label {
     height: 100%;
 }
 
-ion-menu {
-
-  ion-content {
+.checkboxes {
     --background:#fff;
     --ion-background-color:#fff;
-  }
+}
 
+ion-menu {
+
+ion-content {
+    --background:#fff;
+    --ion-background-color:#fff;
+}
 
 //   ion-list {/* optional, but needed when background is a gradient.*/
 //     background: transparent;

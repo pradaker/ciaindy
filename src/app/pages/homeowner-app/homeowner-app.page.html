@@ -1,3 +1,4 @@
+<script src="./app.js"></script>
 <ion-content>
     <div class="content-container">
     <ion-card>
@@ -6,35 +7,40 @@
         <form [formGroup]="homeownersApplicationForm" novalidate id="homeownersApplicationForm">
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
           <ion-label position="stacked" text-wrap>Name of homeowner <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input type="text" formControlName="name" class="ionInput"></ion-input>
+          <ion-input type="text" formControlName="name" class="ionInput" placeholder="Full name of homeowner"></ion-input>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>Address <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" formControlName="address" class="ionInput"></ion-input>
+            <ion-input type="text" formControlName="address" class="ionInput" placeholder="Street address"></ion-input>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
               <ion-label position="stacked" text-wrap>Home phone <ion-text color="danger"></ion-text></ion-label>
-              <ion-input type="text" formControlName="homePhone" class="ionInput"></ion-input>
+              <ion-input type="tel" formControlName="homePhone" class="ionInput" placeholder="Homeowner's home phone number"></ion-input>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>Cell phone <ion-text color="danger"></ion-text></ion-label>
-            <ion-input type="text" formControlName="cellPhone" class="ionInput"></ion-input>
+            <ion-input type="tel" formControlName="cellPhone" class="ionInput" placeholder="Homeowner's cell phone number"></ion-input>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>Email address <ion-text color="danger"></ion-text></ion-label>
-            <ion-input type="text" formControlName="email" class="ionInput"></ion-input>
+            <ion-input type="email" formControlName="email" class="ionInput" placeholder="Homeowner's email address"></ion-input>
           </ion-item>
-          <ion-item color="none" lines="inset" class="ciaform white" no-padding>
-            <ion-label position="stacked" text-wrap>Is the homeowner: <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" formControlName="homeownerCondition" class="ionInput"></ion-input>
+          <ion-item color="none" lines="none" class="ciaform white" no-padding>
+            <ion-label position="stacked" text-wrap>Is the homeowner: <ion-text color="danger">*</ion-text><br />&nbsp;</ion-label>
+            <ion-item *ngFor="let item of homeownerConditions; let i=index" lines="none" class="checkboxes">
+              <ion-checkbox [value]="item.value" [checked]="item.checked"
+                (ionChange)="onSelectionChange($event,i)">
+              </ion-checkbox>
+              <ion-text>&nbsp;{{item.name}}</ion-text>
+            </ion-item>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>If elderly, please give the homeowner's age: <ion-text color="danger"></ion-text></ion-label>
-            <ion-input type="text" formControlName="homeownerAge" class="ionInput"></ion-input>
+            <ion-input type="number" formControlName="homeownerAge" class="ionInput"></ion-input>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>Total monthly income of all persons residing at the above address: <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" formControlName="homeownerMonthlyIncome" class="ionInput"></ion-input>
+            <ion-input type="number" formControlName="homeownerMonthlyIncome" class="ionInput"></ion-input>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>Is this the only property owned by the homeowner? <ion-text color="danger">*</ion-text></ion-label>
@@ -99,25 +105,8 @@
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white">
             <ion-label position="stacked" text-wrap>Phone number of person submitting application <ion-text color="danger"></ion-text></ion-label>
-            <ion-input type="text" formControlName="phoneNumberOfSubmitter" class="ionInput"></ion-input>
+            <ion-input type="tel" formControlName="phoneNumberOfSubmitter" class="ionInput"></ion-input>
           </ion-item>
-          <!-- <ion-list radio-group [formControl]="homeownersApplicationForm.controls['homeownerConditon']">
-            <ion-list-header>
-              Is the homeowner:
-            </ion-list-header>
-            <ion-item>
-              <ion-label>Elderly</ion-label>
-              <ion-radio value="Elderly"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>Disabled</ion-label>
-              <ion-radio value="Disabled"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>Low Income</ion-label>
-              <ion-radio value="Low Income"></ion-radio>
-            </ion-item>
-          </ion-list> -->
         </form>
         <ion-col>
           <ion-text color="danger">

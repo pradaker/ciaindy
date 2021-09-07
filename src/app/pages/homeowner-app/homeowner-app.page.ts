@@ -1,7 +1,8 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { HomeownerApplication, HomeownerApplicationService } from 'src/app/services/homeowner-application.service';
+
 @Component({
   selector: 'app-homeowner-app',
   templateUrl: './homeowner-app.page.html',
@@ -14,20 +15,53 @@ export class HomeownerAppPage implements OnInit {
 
   constructor(
     private homeownerApplicationService: HomeownerApplicationService,
-    private alertController: AlertController
-  ) {}
+    private alertController: AlertController,
+    private formBuilder: FormBuilder,
+  ) {
+    this.homeownersApplicationForm = this.formBuilder.group({
+      checkboxArrayList: this.formBuilder.array([], [Validators.required])
+    });
 
-  homeownerConditions: Array<String> = ['Elderly', 'Disabled', 'Low Income'];
+    this.onLoadCheckboxStatus();
+  }
+
+  homeownerConditions = [
+    { name: 'Elderly', value: 'Elderly', checked: false },
+    { name: 'Disabled', value: 'Disabled', checked: false },
+    { name: 'Low Income', value: 'Low Income', checked: false }
+  ];
 
   ngOnInit() {
     this.createForm()
   }
 
-  // addHomeownerConditionControls() {
-  //   const arr = this.homeownerConditions.map(element => {
-  //     return this.
-  //   }
-  // }
+  isFormSubmitted = false;
+
+  updateCheckControl(cal, o) {
+    if (o.checked) {
+      cal.push(new FormControl(o.value));
+    } else {
+      cal.controls.forEach((item: FormControl, index) => {
+        if (item.value == o.value) {
+          cal.removeAt(index);
+          return;
+        }
+      });
+    }
+  }
+
+  onLoadCheckboxStatus() {
+    const checkboxArrayList: FormArray = this.homeownersApplicationForm.get('checkboxArrayList') as FormArray;
+    this.homeownerConditions.forEach(o => {
+      this.updateCheckControl(checkboxArrayList, o);
+    })
+  }
+
+  onSelectionChange(e, i) {
+    const checkboxArrayList: FormArray = this.homeownersApplicationForm.get('checkboxArrayList') as FormArray;
+    this.homeownerConditions[i].checked = e.target.checked;
+    this.updateCheckControl(checkboxArrayList, e.target);
+  }
 
   createForm() {
     this.homeownersApplicationForm = new FormGroup({
