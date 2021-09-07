@@ -26,7 +26,7 @@
             <ion-input type="email" formControlName="email" class="ionInput" placeholder="Homeowner's email address"></ion-input>
           </ion-item>
           <ion-item color="none" lines="none" class="ciaform white" no-padding>
-            <ion-label position="stacked" text-wrap>Is the homeowner: <br />&nbsp;</ion-label>
+            <ion-label position="stacked" text-wrap>Is the homeowner: <ion-text color="danger">*</ion-text><br />&nbsp;</ion-label>
             <ion-item *ngFor="let item of homeownerConditions; let i=index" lines="none" class="checkboxes">
               <ion-checkbox [value]="item.value" [checked]="item.checked">
               </ion-checkbox>
