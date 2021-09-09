@@ -30,6 +30,32 @@ export class HomeownerAppPage implements OnInit {
     { name: 'Low Income', value: 'Low Income', checked: false }
   ];
 
+  optionsOnlyPropertyOwned = [
+    { name: 'Yes', value: 'Yes', checked: false },
+    { name: 'No', value: 'No', checked: false }
+  ]
+
+  optionsIsWorking = [
+    { name: 'Yes', value: 'Yes', checked: false },
+    { name: 'No', value: 'No', checked: false },
+    { name: 'Retired', value: 'Retired', checked: false }
+  ]
+
+  optionsIsChurchMember = [
+    { name: 'Yes', value: 'Yes', checked: false },
+    { name: 'No', value: 'No', checked: false }
+  ]
+
+  optionsIsCommunityOrgMember = [
+    { name: 'Yes', value: 'Yes', checked: false },
+    { name: 'No', value: 'No', checked: false }
+  ]
+
+  optionsHomeownerAwareness = [
+    { name: 'Yes', value: 'Yes', checked: false },
+    { name: 'No', value: 'No', checked: false }
+  ]
+
   ngOnInit() {
     this.createForm()
   }
@@ -44,17 +70,13 @@ export class HomeownerAppPage implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       homeownerAge: new FormControl(''),
       homeownerMonthlyIncome: new FormControl('', Validators.required),
-      onlyPropertyOwned: new FormControl('', Validators.required),
-      isWorking: new FormControl('', Validators.required),
       employmentLocation: new FormControl(''),
       isChurchMember: new FormControl('', Validators.required),
       churchName: new FormControl(''),
-      isCommunityOrgMember: new FormControl('', Validators.required),
       communityOrgName: new FormControl(''),
       assistExplanation: new FormControl('', Validators.required),
       workNeeded: new FormControl('', Validators.required),
       familyAndFriends: new FormControl(''),
-      homeownerAwareness: new FormControl('', Validators.required),
       howLearnedAboutCIA: new FormControl(''),
       nameOfPersonSubmitting: new FormControl('', Validators.required),
       agencyName: new FormControl(''),
@@ -70,6 +92,36 @@ export class HomeownerAppPage implements OnInit {
         selectedConditions.push(option.value)
       }
     })
+    let selectedOnlyPropertyOwned = []
+    this.optionsOnlyPropertyOwned.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedOnlyPropertyOwned.push(option.value)
+      }
+    })
+    let selectedIsWorking = []
+    this.optionsIsWorking.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedIsWorking.push(option.value)
+      }
+    })
+    let selectedIsChurchMember = []
+    this.optionsIsChurchMember.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedIsChurchMember.push(option.value)
+      }
+    })
+    let selectedIsCommunityOrgMember = []
+    this.optionsIsCommunityOrgMember.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedIsCommunityOrgMember.push(option.value)
+      }
+    })
+    let selectedHomeownerAwareness = []
+    this.optionsHomeownerAwareness.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedHomeownerAwareness.push(option.value)
+      }
+    })
     // Construct and save application details
     const homeownerApplication: HomeownerApplication = {
       name: this.homeownersApplicationForm.controls.name.value,
@@ -80,17 +132,17 @@ export class HomeownerAppPage implements OnInit {
       homeownerCondition: selectedConditions,
       homeownerAge: this.homeownersApplicationForm.controls.homeownerAge.value,
       homeownerMonthlyIncome: this.homeownersApplicationForm.controls.homeownerMonthlyIncome.value,
-      onlyPropertyOwned: this.homeownersApplicationForm.controls.onlyPropertyOwned.value,
-      isWorking: this.homeownersApplicationForm.controls.isWorking.value,
+      onlyPropertyOwned: selectedOnlyPropertyOwned,
+      isWorking: selectedIsWorking,
       employmentLocation: this.homeownersApplicationForm.controls.employmentLocation.value,
-      isChurchMember: this.homeownersApplicationForm.controls.isChurchMember.value,
+      isChurchMember: selectedIsChurchMember,
       churchName: this.homeownersApplicationForm.controls.churchName.value,
-      isCommunityOrgMember: this.homeownersApplicationForm.controls.isCommunityOrgMember.value,
+      isCommunityOrgMember: selectedIsCommunityOrgMember,
       communityOrgName: this.homeownersApplicationForm.controls.communityOrgName.value,
       assistExplanation: this.homeownersApplicationForm.controls.assistExplanation.value,
       workNeeded: this.homeownersApplicationForm.controls.workNeeded.value,
       familyAndFriends: this.homeownersApplicationForm.controls.familyAndFriends.value,
-      homeownerAwareness: this.homeownersApplicationForm.controls.homeownerAwareness.value,
+      homeownerAwareness: selectedHomeownerAwareness,
       howLearnedAboutCIA: this.homeownersApplicationForm.controls.howLearnedAboutCIA.value,
       nameOfPersonSubmitting: this.homeownersApplicationForm.controls.nameOfPersonSubmitting.value,
       agencyName: this.homeownersApplicationForm.controls.agencyName.value,
@@ -158,32 +210,48 @@ export class HomeownerAppPage implements OnInit {
       }
     }
 
-    const onlyPropertyOwnedControl = this.homeownersApplicationForm.controls.onlyPropertyOwned;
-    if (onlyPropertyOwnedControl.dirty && onlyPropertyOwnedControl.errors) {
-      if (onlyPropertyOwnedControl.hasError('required')) {
-        errors.push('You are required to specify whether this is the only property owned by the homeowner.');
+    let selectedOnlyPropertyOwned = []
+    this.optionsOnlyPropertyOwned.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedOnlyPropertyOwned.push(option.value)
       }
+    })
+
+    if (selectedOnlyPropertyOwned == []) {
+      errors.push('You are required to specify whether this is the only property owned by the homeowner.')
     }
 
-    const isWorkingControl = this.homeownersApplicationForm.controls.isWorking;
-    if (isWorkingControl.dirty && isWorkingControl.errors) {
-      if (isWorkingControl.hasError('required')) {
-        errors.push('You are required to specify whether the homeowner is working.');
+    let selectedIsWorking = []
+    this.optionsIsWorking.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedIsWorking.push(option.value)
       }
+    })
+
+    if (selectedIsWorking == []) {
+      errors.push('You are required to specify whether the homeowner is working.')
     }
 
-    const isChurchMemberControl = this.homeownersApplicationForm.controls.isChurchMember;
-    if (isChurchMemberControl.dirty && isChurchMemberControl.errors) {
-      if (isChurchMemberControl.hasError('required')) {
-        errors.push('You are required to specify whether the homeowner is a member or regular attendee of a local church.');
+    let selectedIsChurchMember = []
+    this.optionsIsChurchMember.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedIsChurchMember.push(option.value)
       }
+    })
+
+    if (selectedIsChurchMember == []) {
+      errors.push('You are required to specify whether the homeowner is a member or regular attendee of a local church.')
     }
 
-    const isCommunityOrgMemberControl = this.homeownersApplicationForm.controls.isCommunityOrgMember;
-    if (isCommunityOrgMemberControl.dirty && isCommunityOrgMemberControl.errors) {
-      if (isCommunityOrgMemberControl.hasError('required')) {
-        errors.push('You are required to specify whether the homeowner is a member of a community organization.');
+    let selectedIsCommunityOrgMember = []
+    this.optionsIsCommunityOrgMember.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedIsCommunityOrgMember.push(option.value)
       }
+    })
+
+    if (selectedIsCommunityOrgMember == []) {
+      errors.push('You are required to specify whether the homeowner is a member of a community organization.')
     }
 
     const assistExplanationControl = this.homeownersApplicationForm.controls.assistExplanation;
@@ -200,11 +268,15 @@ export class HomeownerAppPage implements OnInit {
       }
     }
 
-    const homeownerAwarenessControl = this.homeownersApplicationForm.controls.homeownerAwareness;
-    if (homeownerAwarenessControl.dirty && homeownerAwarenessControl.errors) {
-      if (homeownerAwarenessControl.hasError('required')) {
-        errors.push('You are required to specify whether the homeowner is aware of this referral.');
+    let selectedHomeownerAwareness = []
+    this.optionsHomeownerAwareness.forEach((option: any) => {
+      if(option.checked==true) {
+        selectedHomeownerAwareness.push(option.value)
       }
+    })
+
+    if (selectedHomeownerAwareness == []) {
+      errors.push('You are required to specify whether the homeowner is aware of this referral.')
     }
 
     const nameOfPersonSubmittingControl = this.homeownersApplicationForm.controls.nameOfPersonSubmitting;

@@ -41,29 +41,53 @@
             <ion-label position="stacked" text-wrap>Total monthly income of all persons residing at the above address: <ion-text color="danger">*</ion-text></ion-label>
             <ion-input type="number" formControlName="homeownerMonthlyIncome" class="ionInput"></ion-input>
           </ion-item>
-          <ion-item color="none" lines="inset" class="ciaform white" no-padding>
-            <ion-label position="stacked" text-wrap>Is this the only property owned by the homeowner? <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" formControlName="onlyPropertyOwned" class="ionInput"></ion-input>
+          <ion-item color="none" lines="none" class="ciaform white" no-padding>
+            <ion-label position="stacked" text-wrap>Is this the only property owned by the homeowner? <ion-text color="danger">*</ion-text><br />&nbsp;</ion-label>
+            <ion-radio-group>
+              <ion-item *ngFor="let item of optionsOnlyPropertyOwned; let i=index" lines="none" class="checkboxes">
+                  <ion-radio value={{item.value}}>
+                  </ion-radio>
+                <ion-text>&nbsp;{{item.name}}</ion-text>
+              </ion-item>
+            </ion-radio-group>
           </ion-item>
-          <ion-item color="none" lines="inset" class="ciaform white" no-padding>
-            <ion-label position="stacked" text-wrap>Is the homeowner working? <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" formControlName="isWorking" class="ionInput"></ion-input>
+          <ion-item color="none" lines="none" class="ciaform white" no-padding>
+            <ion-label position="stacked" text-wrap>Is the homeowner working? <ion-text color="danger">*</ion-text><br />&nbsp;</ion-label>
+            <ion-radio-group>
+              <ion-item *ngFor="let item of optionsIsWorking; let i=index" lines="none" class="checkboxes">
+                  <ion-radio value={{item.value}}>
+                  </ion-radio>
+                <ion-text>&nbsp;{{item.name}}</ion-text>
+              </ion-item>
+            </ion-radio-group>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>If yes, where is the homeowner employed? <ion-text color="danger"></ion-text></ion-label>
             <ion-input type="text" formControlName="employmentLocation" class="ionInput"></ion-input>
           </ion-item>
-          <ion-item color="none" lines="inset" class="ciaform white" no-padding>
-            <ion-label position="stacked" text-wrap>Is the homeowner a member or regular attendee of a local church? <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" formControlName="isChurchMember" class="ionInput"></ion-input>
+          <ion-item color="none" lines="none" class="ciaform white" no-padding>
+            <ion-label position="stacked" text-wrap>Is the homeowner a member or regular attendee of a local church? <ion-text color="danger">*</ion-text><br />&nbsp;</ion-label>
+            <ion-radio-group>
+              <ion-item *ngFor="let item of optionsIsChurchMember; let i=index" lines="none" class="checkboxes">
+                  <ion-radio value={{item.value}}>
+                  </ion-radio>
+                <ion-text>&nbsp;{{item.name}}</ion-text>
+              </ion-item>
+            </ion-radio-group>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>If yes, please give the name of the church. <ion-text color="danger"></ion-text></ion-label>
             <ion-input type="text" formControlName="churchName" class="ionInput"></ion-input>
           </ion-item>
-          <ion-item color="none" lines="inset" class="ciaform white" no-padding>
-            <ion-label position="stacked" text-wrap>Is the homeowner a member of a community organization? <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" formControlName="isCommunityOrgMember" class="ionInput"></ion-input>
+          <ion-item color="none" lines="none" class="ciaform white" no-padding>
+            <ion-label position="stacked" text-wrap>Is the homeowner a member of a community organization? <ion-text color="danger">*</ion-text><br />&nbsp;</ion-label>
+            <ion-radio-group>
+              <ion-item *ngFor="let item of optionsIsCommunityOrgMember; let i=index" lines="none" class="checkboxes">
+                  <ion-radio value={{item.value}}>
+                  </ion-radio>
+                <ion-text>&nbsp;{{item.name}}</ion-text>
+              </ion-item>
+            </ion-radio-group>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>If yes, please give the name of the community organization. <ion-text color="danger"></ion-text></ion-label>
@@ -81,9 +105,15 @@
             <ion-label position="stacked" text-wrap>Friends and family members of the homeowner are encouraged to help with the repairs. List the names, addresses, and phone numbers of family and friends that would be willing to participate. <ion-text color="danger"></ion-text></ion-label>
             <ion-input type="text" formControlName="familyAndFriends" class="ionInput"></ion-input>
           </ion-item>
-          <ion-item color="none" lines="inset" class="ciaform white">
-            <ion-label position="stacked" text-wrap>Is the homeowner aware of this referral? <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" formControlName="homeownerAwareness" class="ionInput"></ion-input>
+          <ion-item color="none" lines="none" class="ciaform white" no-padding>
+            <ion-label position="stacked" text-wrap>Is the homeowner aware of this referral? <ion-text color="danger">*</ion-text><br />&nbsp;</ion-label>
+            <ion-radio-group>
+              <ion-item *ngFor="let item of optionsHomeownerAwareness; let i=index" lines="none" class="checkboxes">
+                  <ion-radio value={{item.value}}>
+                  </ion-radio>
+                <ion-text>&nbsp;{{item.name}}</ion-text>
+              </ion-item>
+            </ion-radio-group>
           </ion-item>
           <ion-item color="none" lines="none" class="ciaform white">
             <ion-text style="padding-top:16px;">
