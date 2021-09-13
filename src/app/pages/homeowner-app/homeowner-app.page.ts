@@ -86,86 +86,100 @@ export class HomeownerAppPage implements OnInit {
   }
 
   async saveDetail() {
-    let selectedConditions = []
-    this.homeownerConditions.forEach((option: any) => {
-      if(option.checked==true) {
-        selectedConditions.push(option.value)
-      }
-    })
-    let selectedOnlyPropertyOwned = []
-    this.optionsOnlyPropertyOwned.forEach((option: any) => {
-      if(option.checked==true) {
-        selectedOnlyPropertyOwned.push(option.value)
-      }
-    })
-    let selectedIsWorking = []
-    this.optionsIsWorking.forEach((option: any) => {
-      if(option.checked==true) {
-        selectedIsWorking.push(option.value)
-      }
-    })
-    let selectedIsChurchMember = []
-    this.optionsIsChurchMember.forEach((option: any) => {
-      if(option.checked==true) {
-        selectedIsChurchMember.push(option.value)
-      }
-    })
-    let selectedIsCommunityOrgMember = []
-    this.optionsIsCommunityOrgMember.forEach((option: any) => {
-      if(option.checked==true) {
-        selectedIsCommunityOrgMember.push(option.value)
-      }
-    })
-    let selectedHomeownerAwareness = []
-    this.optionsHomeownerAwareness.forEach((option: any) => {
-      if(option.checked==true) {
-        selectedHomeownerAwareness.push(option.value)
-      }
-    })
-    // Construct and save application details
-    const homeownerApplication: HomeownerApplication = {
-      name: this.homeownersApplicationForm.controls.name.value,
-      address: this.homeownersApplicationForm.controls.address.value,
-      homePhone: this.homeownersApplicationForm.controls.homePhone.value,
-      cellPhone: this.homeownersApplicationForm.controls.cellPhone.value,
-      email: this.homeownersApplicationForm.controls.email.value,
-      homeownerCondition: selectedConditions,
-      homeownerAge: this.homeownersApplicationForm.controls.homeownerAge.value,
-      homeownerMonthlyIncome: this.homeownersApplicationForm.controls.homeownerMonthlyIncome.value,
-      onlyPropertyOwned: selectedOnlyPropertyOwned,
-      isWorking: selectedIsWorking,
-      employmentLocation: this.homeownersApplicationForm.controls.employmentLocation.value,
-      isChurchMember: selectedIsChurchMember,
-      churchName: this.homeownersApplicationForm.controls.churchName.value,
-      isCommunityOrgMember: selectedIsCommunityOrgMember,
-      communityOrgName: this.homeownersApplicationForm.controls.communityOrgName.value,
-      assistExplanation: this.homeownersApplicationForm.controls.assistExplanation.value,
-      workNeeded: this.homeownersApplicationForm.controls.workNeeded.value,
-      familyAndFriends: this.homeownersApplicationForm.controls.familyAndFriends.value,
-      homeownerAwareness: selectedHomeownerAwareness,
-      howLearnedAboutCIA: this.homeownersApplicationForm.controls.howLearnedAboutCIA.value,
-      nameOfPersonSubmitting: this.homeownersApplicationForm.controls.nameOfPersonSubmitting.value,
-      agencyName: this.homeownersApplicationForm.controls.agencyName.value,
-      phoneNumberOfSubmitter: this.homeownersApplicationForm.controls.phoneNumberOfSubmitter.value,
-      applicationSubmissionDate: new Date().getTime(),
-    }
-    this.homeownerApplicationService.addHomeownerApplication(homeownerApplication)
-    // Display alert
-    const alert = await this.alertController.create({
-      cssClass: 'customAlert',
-      header: 'Application Submitted',
-      message: 'We have successfully receieved your application!',
-      buttons: [
-        {
-          text: 'OK',
-          handler: () => {
-            location.reload();
+    if (this.homeownersApplicationForm.invalid == true) {
+      const alert = await this.alertController.create({
+        cssClass: 'customAlert',
+        header: 'Error',
+        message: 'Please fix all errors in application before submitting.',
+        buttons: [
+          {
+            text: 'OK'
           }
+        ],
+      });
+      await alert.present();
+    } else {
+      let selectedConditions = []
+      this.homeownerConditions.forEach((option: any) => {
+        if(option.checked==true) {
+          selectedConditions.push(option.value)
         }
-      ],
-      backdropDismiss: false
-    });
-    await alert.present();
+      })
+      let selectedOnlyPropertyOwned = []
+      this.optionsOnlyPropertyOwned.forEach((option: any) => {
+        if(option.checked==true) {
+          selectedOnlyPropertyOwned.push(option.value)
+        }
+      })
+      let selectedIsWorking = []
+      this.optionsIsWorking.forEach((option: any) => {
+        if(option.checked==true) {
+          selectedIsWorking.push(option.value)
+        }
+      })
+      let selectedIsChurchMember = []
+      this.optionsIsChurchMember.forEach((option: any) => {
+        if(option.checked==true) {
+          selectedIsChurchMember.push(option.value)
+        }
+      })
+      let selectedIsCommunityOrgMember = []
+      this.optionsIsCommunityOrgMember.forEach((option: any) => {
+        if(option.checked==true) {
+          selectedIsCommunityOrgMember.push(option.value)
+        }
+      })
+      let selectedHomeownerAwareness = []
+      this.optionsHomeownerAwareness.forEach((option: any) => {
+        if(option.checked==true) {
+          selectedHomeownerAwareness.push(option.value)
+        }
+      })
+      // Construct and save application details
+      const homeownerApplication: HomeownerApplication = {
+        AA_name: this.homeownersApplicationForm.controls.name.value,
+        AB_address: this.homeownersApplicationForm.controls.address.value,
+        AC_homePhone: this.homeownersApplicationForm.controls.homePhone.value,
+        AD_cellPhone: this.homeownersApplicationForm.controls.cellPhone.value,
+        AE_email: this.homeownersApplicationForm.controls.email.value,
+        AF_homeownerCondition: selectedConditions,
+        AG_homeownerAge: this.homeownersApplicationForm.controls.homeownerAge.value,
+        AH_homeownerMonthlyIncome: this.homeownersApplicationForm.controls.homeownerMonthlyIncome.value,
+        AI_onlyPropertyOwned: selectedOnlyPropertyOwned,
+        AJ_isWorking: selectedIsWorking,
+        AK_employmentLocation: this.homeownersApplicationForm.controls.employmentLocation.value,
+        AL_isChurchMember: selectedIsChurchMember,
+        AM_churchName: this.homeownersApplicationForm.controls.churchName.value,
+        AN_isCommunityOrgMember: selectedIsCommunityOrgMember,
+        AO_communityOrgName: this.homeownersApplicationForm.controls.communityOrgName.value,
+        AP_assistExplanation: this.homeownersApplicationForm.controls.assistExplanation.value,
+        AQ_workNeeded: this.homeownersApplicationForm.controls.workNeeded.value,
+        AR_familyAndFriends: this.homeownersApplicationForm.controls.familyAndFriends.value,
+        AS_homeownerAwareness: selectedHomeownerAwareness,
+        AT_howLearnedAboutCIA: this.homeownersApplicationForm.controls.howLearnedAboutCIA.value,
+        AU_nameOfPersonSubmitting: this.homeownersApplicationForm.controls.nameOfPersonSubmitting.value,
+        AV_agencyName: this.homeownersApplicationForm.controls.agencyName.value,
+        AW_phoneNumberOfSubmitter: this.homeownersApplicationForm.controls.phoneNumberOfSubmitter.value,
+        AX_applicationSubmissionDate: new Date().getTime(),
+      }
+      this.homeownerApplicationService.addHomeownerApplication(homeownerApplication)
+      // Display alert
+      const alert = await this.alertController.create({
+        cssClass: 'customAlert',
+        header: 'Application Submitted',
+        message: 'We have successfully receieved your application!',
+        buttons: [
+          {
+            text: 'OK',
+            handler: () => {
+              location.reload();
+            }
+          }
+        ],
+        backdropDismiss: false
+      });
+      await alert.present();
+    }
   }
 
   public gethomeownersApplicationFormErrors(): string[] {
