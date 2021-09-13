@@ -7,23 +7,23 @@
         <form [formGroup]="homeownersApplicationForm" novalidate id="homeownersApplicationForm">
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
           <ion-label position="stacked" text-wrap>Name of homeowner <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input type="text" formControlName="name" class="ionInput" placeholder="Full name of homeowner"></ion-input>
+          <ion-input type="text" formControlName="name" class="ionInput"></ion-input>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>Address <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" formControlName="address" class="ionInput" placeholder="Street address"></ion-input>
+            <ion-input type="text" formControlName="address" class="ionInput"></ion-input>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
               <ion-label position="stacked" text-wrap>Home phone <ion-text color="danger"></ion-text></ion-label>
-              <ion-input type="tel" formControlName="homePhone" class="ionInput" placeholder="Homeowner's home phone number"></ion-input>
+              <ion-input type="tel" formControlName="homePhone" class="ionInput"></ion-input>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>Cell phone <ion-text color="danger"></ion-text></ion-label>
-            <ion-input type="tel" formControlName="cellPhone" class="ionInput" placeholder="Homeowner's cell phone number"></ion-input>
+            <ion-input type="tel" formControlName="cellPhone" class="ionInput"></ion-input>
           </ion-item>
           <ion-item color="none" lines="inset" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>Email address <ion-text color="danger"></ion-text></ion-label>
-            <ion-input type="email" formControlName="email" class="ionInput" placeholder="Homeowner's email address"></ion-input>
+            <ion-input type="email" formControlName="email" class="ionInput"></ion-input>
           </ion-item>
           <ion-item color="none" lines="none" class="ciaform white" no-padding>
             <ion-label position="stacked" text-wrap>Is the homeowner: <ion-text color="danger">*</ion-text><br />&nbsp;</ion-label>
@@ -144,7 +144,8 @@
             </ul>
           </ion-text>
         </ion-col>
-        <ion-button color="primary" [disabled]="homeownersApplicationForm.invalid" (click)="saveDetail()">Submit</ion-button>
+        <ion-button color="primary" (click)="saveDetail()">Submit</ion-button>
+        <!-- <ion-button color="primary" [disabled]="homeownersApplicationForm.invalid" (click)="saveDetail()">Submit</ion-button> -->
       </ion-card-content>
     </ion-card>
   </div>
