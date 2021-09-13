@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomePageContent, HomePageContentService } from 'src/app/services/home-page-content.service';
 import { FooterContent, FooterContentService } from 'src/app/services/footer-content.service';
-import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +13,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private HomePageContentService: HomePageContentService,
-    private FooterContentService: FooterContentService,
-    private sanitizer: DomSanitizer
+    private FooterContentService: FooterContentService
   ) { }
 
   ngOnInit() {
@@ -26,15 +24,7 @@ export class HomePage implements OnInit {
   getHomePageContent() {
     this.HomePageContentService.getHomePageContent().subscribe(res => {
       console.log(res)
-      let SanitizedRes = res
-      let i = 0
-      SanitizedRes.forEach((response: any) => {
-        SanitizedRes[i].title = response.title
-        const test: any = this.sanitizer.bypassSecurityTrustResourceUrl(response.description)
-        SanitizedRes[i].description = test
-        i+=-1
-      })
-      this.HomePageContents = SanitizedRes
+      this.HomePageContents = res
     })
   }
 
