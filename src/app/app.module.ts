@@ -11,6 +11,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxGooglePlacesAutocompleteModule } from '@codious/ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    NgxGooglePlacesAutocompleteModule.forRoot({
+      key: 'AIzaSyBOtP4LG-2CXX84PT_1ygW2AmEJKiiGOq8', // your Google API key retrieved from the Google Developer Console
+      language: 'en', // see https://developers.google.com/maps/documentation/javascript/localization
+      libraries: 'places', // see https://developers.google.com/maps/documentation/javascript/libraries
+      loadScript: true, // whether or not the <script> tag of the Google Maps API should be loaded
+      options: { types: ['geocode'] }, // see https://developers.google.com/maps/documentation/javascript/places-autocomplete#add_autocomplete
+      region: 'US', // see https://developers.google.com/maps/documentation/javascript/localization#Region
+    }),
     ReactiveFormsModule,
     HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  }],

@@ -85,7 +85,7 @@ export class HomeownerAppPage implements OnInit {
     });
   }
 
-  async saveDetail() {
+  async saveDetail(): Promise<void> {
     if (this.homeownersApplicationForm.invalid == true) {
       const alert = await this.alertController.create({
         cssClass: 'customAlert',
@@ -136,9 +136,11 @@ export class HomeownerAppPage implements OnInit {
         }
       })
       // Construct and save application details
+      const address = await this.geocode(this.homeownersApplicationForm.value.address);
+      console.log(address);
       const homeownerApplication: HomeownerApplication = {
         AA_name: this.homeownersApplicationForm.controls.name.value,
-        AB_address: this.homeownersApplicationForm.controls.address.value,
+        AB_address: "na",
         AC_homePhone: this.homeownersApplicationForm.controls.homePhone.value,
         AD_cellPhone: this.homeownersApplicationForm.controls.cellPhone.value,
         AE_email: this.homeownersApplicationForm.controls.email.value,
@@ -180,6 +182,15 @@ export class HomeownerAppPage implements OnInit {
       });
       await alert.present();
     }
+  }
+
+  private async geocode(address: string): Promise<google.maps.GeocoderResult> {
+    return new Promise((resolve, reject) => {
+      new google.maps.Geocoder().geocode({ address }, (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
+        if (status !== google.maps.GeocoderStatus.OK) reject();
+        if (status === google.maps.GeocoderStatus.OK) resolve(results[0]);
+      });
+    });
   }
 
   public gethomeownersApplicationFormErrors(): string[] {
