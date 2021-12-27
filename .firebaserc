@@ -2,5 +2,17 @@
   "projects": {
     "dev": "ciaindy-9562d",
     "default": "ciaindy-9562d"
+  },
+  "targets": {
+    "ciaindy-9562d": {
+      "hosting": {
+        "staging": [
+          "ciaindy-dev"
+        ],
+        "prod": [
+          "ciaindy-9562d"
+        ]
+      }
+    }
   }
 }
