@@ -61,7 +61,7 @@ export class AuthenticationService {
     return this.ngFireAuth.signInWithPopup(provider)
     .then((result) => {
       this.ngZone.run(() => {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['admin']);
       })
       this.SetUserData(result.user);
     }).catch((error) => {
@@ -75,9 +75,6 @@ export class AuthenticationService {
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      emailVerified: user.emailVerified
     }
     return userRef.set(userData, {
       merge: true

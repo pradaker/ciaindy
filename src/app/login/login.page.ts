@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
       {
-        this.router.navigate(['admin/dashboard'])
+        this.router.navigate(['admin'])
       }
   }
 }
