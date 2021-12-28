@@ -1,14 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Hello World!</ion-title>
+    <ion-title>Christmas in Action Content Editing Tool</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <ion-card>
     <ion-card-content>
-      <p>Hello World! Looks like you successfully logged in :)</p>
-      <p>User email: <strong>{{ userDetail }}</strong></p>
+      <p>What page would you like to edit?</p>
+      <ion-button type="submit" color="primary" expand="block" [routerLink]="['/admin/edithome']">Home</ion-button>
+      <ion-button type="submit" color="primary" expand="block" [routerLink]="['/admin/editpartnerships']">Partnerships</ion-button>
+      <ion-button type="submit" color="primary" expand="block" [routerLink]="['/admin/editgetinvolved']">Get Involved</ion-button>
+      <ion-button type="submit" color="primary" expand="block" [routerLink]="['/admin/editfooter']">Footer</ion-button>
+      <p>&nbsp;</p>
+      <p>Logged in as <strong>{{ userDetail }}</strong></p>
       <ion-button type="submit" color="danger" expand="block" (click)="signOut()">Signout</ion-button>
     </ion-card-content>
   </ion-card>
