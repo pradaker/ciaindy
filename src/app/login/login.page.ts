@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from "@angular/router";
-import { AuthenticationService } from "../shared/authentication-service";
+import { IonicAuthService } from '../ionic-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +11,63 @@ import { AuthenticationService } from "../shared/authentication-service";
 
 export class LoginPage implements OnInit {
 
-  constructor(
-    public authService: AuthenticationService,
-    public router: Router
-  ) {}
+  userForm: FormGroup;
+  successMsg: string = '';
+  errorMsg: string = '';
+  
 
-  ngOnInit() {}
-
-  logIn(email, password) {
-    this.authService.SignIn(email.value, password.value)
-      {
-        this.router.navigate(['admin'])
+  error_msg = {
+    'email': [
+      { 
+        type: 'required', 
+        message: 'Please provide email.' 
+      },
+      { 
+        type: 'pattern', 
+        message: 'Email address is not valid.' 
       }
+    ],
+    'password': [
+      { 
+        type: 'required', 
+        message: 'Password is required.' 
+      },
+      { 
+        type: 'minlength', 
+        message: 'Password length should be 6 characters long.' 
+      }
+    ]
+  };
+
+  constructor(
+    private router: Router,
+    private ionicAuthService: IonicAuthService,
+    private fb: FormBuilder
+  ) { }
+
+  ngOnInit() {
+    this.userForm = this.fb.group({
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: new FormControl('', Validators.compose([
+        Validators.minLength(6),
+        Validators.required
+      ])),
+    });
   }
+
+  signIn(value) {
+    this.ionicAuthService.signinUser(value)
+      .then((response) => {
+        console.log(response)
+        this.errorMsg = "";
+        this.router.navigateByUrl('admin');
+      }, error => {
+        this.errorMsg = error.message;
+        this.successMsg = "";
+      })
+  }
+
 }

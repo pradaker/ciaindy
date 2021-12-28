@@ -1,9 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>admin</ion-title>
+    <ion-title>Hello World!</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+      <p>Hello World! Looks like you successfully logged in :)</p>
+      <p>User email: <strong>{{ userDetail }}</strong></p>
+      <ion-button type="submit" color="danger" expand="block" (click)="signOut()">Signout</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
