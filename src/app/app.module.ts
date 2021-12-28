@@ -10,11 +10,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule} from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot({mode: 'md'}), AppRoutingModule,
+  imports: [BrowserModule, IonicModule.forRoot({mode: 'md'}), QuillModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

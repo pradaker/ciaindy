@@ -106,4 +106,14 @@ ion-content {
 //   ion-list {/* optional, but needed when background is a gradient.*/
 //     background: transparent;
 //   }
+
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
+@import '~quill/dist/quill.bubble.css';
+
+[contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
 }
