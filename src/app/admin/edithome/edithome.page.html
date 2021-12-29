@@ -8,13 +8,16 @@
   <ion-card>
     <ion-card-content>
       <form [formGroup]="homePageContentForm">
-        <div class="form-group">
-          <label for="Title">Title</label>
-          <input formControlName="title" class="form-control" id="Title" aria-describedby="Title">
-        </div>
+        <div *ngFor="let item of [].constructor(1); let i = index">
           <div class="form-group">
-            <label>Description</label>
-            <app-rich-text-editor [control]="descriptionHomePage"></app-rich-text-editor>
+            <ion-label position="floating" for="Title">Title</ion-label>
+            <ion-input type="text" [formControlName]="'title'+i" class="form-control" id="Title" aria-describedby="Title"></ion-input>
+          </div>
+            <div class="form-group">
+              <ion-label position="floating">Content</ion-label>
+              <quill-editor class="content-editor" [styles]="{'min-height': '120px'}" [formControlName]="'description'+i"></quill-editor>
+            </div>
+            <ion-button type="submit" color="primary" expand="block" (click)="saveForm(i)">Save</ion-button>
           </div>
       </form>
     </ion-card-content>

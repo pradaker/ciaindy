@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { HomePageContent, HomePageContentService } from 'src/app/services/home-page-content.service';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-edithome',
@@ -8,29 +10,72 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./edithome.page.scss'],
 })
 export class EdithomePage implements OnInit {
-  
+  HomePageContents: HomePageContent[] = [];
+
   public homePageContentForm: FormGroup;
 
   constructor(
     private alertController: AlertController,
     private formBuilder: FormBuilder,
+    private HomePageContentService: HomePageContentService,
+    private firestore: AngularFirestore,
   ) { }
 
   ngOnInit() {
     this.createForm()
+    this.getHomePageContent()
+  }
+
+  async getHomePageContent() {
+    this.HomePageContentService.getHomePageContent().subscribe(async (res: any) => {
+      console.log(res)
+      console.log(res[0])
+      let i = 0
+      await res.forEach((contentArea: any) => {
+        this.homePageContentForm.patchValue({ ['description'+i]: contentArea.description })
+        this.homePageContentForm.patchValue({ ['title'+i]: contentArea.title })
+        i += 1
+      })
+    })
   }
 
   createForm() {
     this.homePageContentForm = this.formBuilder.group({
-      title: ["Welcome", Validators.required],
-      description: [
-        `<strong>Christmas in Action Indy… <em>building hope in your community.</em></strong></p><p>We appreciate your interest in Christmas in Action Indy. If you have ever watched “Extreme Makeover, Home Edition” and have been moved by seeing people who were struggling being helped by generous volunteers, then you’ll be excited about Christmas in Action Indy.</p><p>Christmas in Action Indy is similar, except that instead of tearing down and building a new home, we complete a one day home repair blitz targeting low-income, elderly, and/or disabled homeowners in the Indianapolis area.</p><p><strong>Each year our one day Home Repair Blitz is scheduled for the third Saturday in May at 8AM.</strong>`
-      ]
+      title0: [Validators.required],
+      description0: [],
+      title1: [Validators.required],
+      description1: [],
+      title2: [Validators.required],
+      description2: []
     });
   }
 
   get descriptionHomePage() {
     return this.homePageContentForm.controls.description as FormControl;
   }
+
+  async saveForm(number) {
+    const title = this.homePageContentForm.value['title'+number].toString()
+    const description = this.homePageContentForm.value['description'+number].toString()
+    console.log(title, description)
+    const alert = await this.alertController.create({
+      header: 'Save complete',
+      message: 'Content has been successfully saved.',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Got it!',
+          handler: () => {
+            console.log('Content saved successfully');
+          }
+        }
+      ]
+    });
+    await alert.present();
+    // Save data to firestore
+    this.firestore.collection('homeContent').doc('F6AO8sYhVWF11NmAQYDD').update({title: title}).then(() => console.log('Title success')).catch(err => console.error(err))
+    this.firestore.collection('homeContent').doc('F6AO8sYhVWF11NmAQYDD').update({description: description}).then(() => console.log('Description success')).catch(err => console.error(err))
+  }
+
 
 }
