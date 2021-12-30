@@ -9,7 +9,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
   templateUrl: './editpartnerships.page.html',
   styleUrls: ['./editpartnerships.page.scss'],
 })
-export class Editpartnerships implements OnInit {
+export class EditpartnershipsPage implements OnInit {
   PartnershipsContents: PartnershipsContent[] = [];
 
   public partnershipsContentForm: FormGroup;
@@ -75,6 +75,10 @@ export class Editpartnerships implements OnInit {
     // Save data to firestore
     if (number == 0) {
       this.firestore.collection('partnershipsContent').doc('4dBxBcI32gp3L0q7vt7a').update({title: title}).then(() => console.log('Title success')).catch(err => console.error(err))
+      this.firestore.collection('partnershipsContent').doc('4dBxBcI32gp3L0q7vt7a').update({description: description}).then(() => console.log('Description success')).catch(err => console.error(err))
+    }
+    if (number == 1) {
+      this.firestore.collection('partnershipsContent').doc('r4sG4ZagsDIhMZPIGZMc').update({title: title}).then(() => console.log('Title success')).catch(err => console.error(err))
       this.firestore.collection('partnershipsContent').doc('r4sG4ZagsDIhMZPIGZMc').update({description: description}).then(() => console.log('Description success')).catch(err => console.error(err))
     }
   }

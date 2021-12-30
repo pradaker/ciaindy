@@ -5,10 +5,10 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-card>
+  <ion-card *ngFor="let item of [].constructor(2); let i = index">
     <ion-card-content>
       <form [formGroup]="partnershipsContentForm">
-        <div *ngFor="let item of [].constructor(1); let i = index">
+        <div>
           <div class="form-group">
             <ion-label position="floating" for="Title">Title</ion-label>
             <ion-input type="text" [formControlName]="'title'+i" class="form-control" id="Title" aria-describedby="Title"></ion-input>
