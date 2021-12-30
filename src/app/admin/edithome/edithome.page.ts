@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { HomePageContent, HomePageContentService } from 'src/app/services/home-page-content.service';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-edithome',
@@ -76,6 +76,5 @@ export class EdithomePage implements OnInit {
     this.firestore.collection('homeContent').doc('F6AO8sYhVWF11NmAQYDD').update({title: title}).then(() => console.log('Title success')).catch(err => console.error(err))
     this.firestore.collection('homeContent').doc('F6AO8sYhVWF11NmAQYDD').update({description: description}).then(() => console.log('Description success')).catch(err => console.error(err))
   }
-
 
 }
