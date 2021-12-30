@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FooterContent, FooterContentService } from 'src/app/services/footer-content.service';
 
 @Component({
   selector: 'app-footer',
@@ -6,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
+  FooterContents: FooterContent[] = [];
 
-  constructor() { }
+  constructor(
+    private FooterContentService: FooterContentService,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getFooterContent()
+  }
+
+  getFooterContent() {
+    this.FooterContentService.getFooterContent().subscribe(res => {
+      console.log(res)
+      this.FooterContents = res
+    })
+  }
 
 }
