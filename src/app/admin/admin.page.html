@@ -8,10 +8,18 @@
   <ion-card>
     <ion-card-content>
       <p>Which page would you like to edit?</p>
-      <ion-button type="submit" color="primary" expand="block" [routerLink]="['/admin/edithome']">Home</ion-button>
-      <ion-button type="submit" color="primary" expand="block" [routerLink]="['/admin/editpartnerships']">Partnerships</ion-button>
-      <ion-button type="submit" color="primary" expand="block" [routerLink]="['/admin/editgetinvolved']">Get Involved</ion-button>
-      <ion-button type="submit" color="primary" expand="block" [routerLink]="['/admin/editfooter']">Footer</ion-button>
+      <ion-item color="white" button detail [routerLink]="['/admin/edithome']">
+        <ion-label>Home</ion-label>
+      </ion-item>
+      <ion-item color="white" button detail [routerLink]="['/admin/editpartnerships']">
+        <ion-label>Partnerships</ion-label>
+      </ion-item>
+      <ion-item color="white" button detail [routerLink]="['/admin/editgetinvolved']">
+        <ion-label>Get Involved</ion-label>
+      </ion-item>
+      <ion-item color="white" button detail [routerLink]="['/admin/editfooter']">
+        <ion-label>Footer</ion-label>
+      </ion-item>
       <p>&nbsp;</p>
       <p>Logged in as <strong>{{ userDetail }}</strong></p>
       <ion-button type="submit" color="danger" expand="block" (click)="signOut()">Signout</ion-button>
