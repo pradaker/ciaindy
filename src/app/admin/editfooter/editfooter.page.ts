@@ -31,11 +31,8 @@ export class EditfooterPage implements OnInit {
     this.FooterContentService.getFooterContent().subscribe(async (res: any) => {
       console.log(res)
       console.log(res[0])
-      let i = 0
       await res.forEach((contentArea: any) => {
-        this.footerContentForm.patchValue({ ['description'+i]: contentArea.description })
-        this.footerContentForm.patchValue({ ['title'+i]: contentArea.title })
-        i += 1
+        this.footerContentForm.patchValue({ ['text']: contentArea.text })
       })
     })
   }
