@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HomePageContent, HomePageContentService } from 'src/app/services/home-page-content.service';
-import { FooterContent, FooterContentService } from 'src/app/services/footer-content.service';
 
 @Component({
   selector: 'app-home',
@@ -9,16 +8,13 @@ import { FooterContent, FooterContentService } from 'src/app/services/footer-con
 })
 export class HomePage implements OnInit {
   HomePageContents: HomePageContent[] = [];
-  FooterContent: FooterContent;
 
   constructor(
     private HomePageContentService: HomePageContentService,
-    private FooterContentService: FooterContentService
   ) { }
 
   ngOnInit() {
     this.getHomePageContent()
-    this.getFooterContent()
   }
 
   getHomePageContent() {
@@ -26,10 +22,6 @@ export class HomePage implements OnInit {
       console.log(res)
       this.HomePageContents = res
     })
-  }
-
-  getFooterContent() {
-    this.FooterContentService.getFooterContent()
   }
 
 }
