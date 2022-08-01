@@ -31,7 +31,7 @@ jobs:
       - name: Install Project Dependencies
         run: npm install
       - name: Set deployment target (dev)
-        uses: w9jds/firebase-action@v1.5.0
+        uses: w9jds/firebase-action@master
         with:
           args: use dev
         env:
